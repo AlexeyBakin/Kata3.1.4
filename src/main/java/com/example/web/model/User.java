@@ -1,5 +1,8 @@
 package com.example.web.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,6 +13,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
@@ -18,32 +24,31 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(name = "username", unique = true, nullable = false)
-    @NotBlank
+    @NotBlank(message = "Enter your username")
     private String username;
 
     @Column(name = "name")
-    @NotBlank
+    @NotBlank(message = "Enter your name")
     private String name;
 
     @Column(name = "lastname")
-    @NotBlank
+    @NotBlank(message = "Enter your lastname")
     private String lastname;
 
     @Column(name = "email")
+    @NotBlank(message = "Enter your email")
     private String email;
 
     @Column(name = "password", nullable = false)
-    @NotBlank
+    @NotBlank(message = "Enter your password")
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
-
-    public User() {}
 
     public User(String username, String name, String lastname, String email, String password) {
         this.username = username;
@@ -58,62 +63,14 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     @Override
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public String getUsername() {
         return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 
     public void setOneRole(Role role) {

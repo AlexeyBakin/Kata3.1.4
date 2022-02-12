@@ -3,12 +3,12 @@ package com.example.web.service;
 import com.example.web.model.Role;
 import com.example.web.repository.RoleRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.Set;
 
-@Transactional
 @Service
+@Transactional
 public class RoleServiceImpl implements RoleService {
     private RoleRepository roleRepository;
 

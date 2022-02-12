@@ -4,20 +4,17 @@ import com.example.web.model.Role;
 import com.example.web.model.User;
 import com.example.web.service.RoleService;
 import com.example.web.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Set;
 
 @Component
+@AllArgsConstructor
 public class DataBaseInit {
     private final UserService userService;
     private final RoleService roleService;
-
-    public DataBaseInit(UserService userService, RoleService roleService) {
-        this.userService = userService;
-        this.roleService = roleService;
-    }
 
     @PostConstruct
     private void startDB() {
