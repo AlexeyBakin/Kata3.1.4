@@ -41,18 +41,6 @@
         </ul>
     </nav>
 
-<!--    <nav class="navbar navbar-dark bg-dark">-->
-<!--        <div class="container-fluid">-->
-<!--            <p class="navbar-brand text-white">-->
-<!--                <span id="headerName" class="navbar-text text-white"></span>-->
-<!--                <span id="headerRoles" class="navbar-text text-white"></span>-->
-<!--            </p>-->
-<!--            <form th:action="@{/logout}" method="POST">-->
-<!--                <button type="submit" class="btn btn-dark text-secondary">Logout</button>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </nav>-->
-
     <!-- Контейнер под панелью навигации -->
     <div class="container-fluid bg-light">
         <div class="row">
@@ -93,16 +81,7 @@
                                     <th>Roles</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td th:text="${user.getId()}"></td>
-                                    <td th:text="${user.getUsername()}"></td>
-                                    <td th:text="${user.getName()}"></td>
-                                    <td th:text="${user.getLastname()}"></td>
-                                    <td th:text="${user.getEmail()}"></td>
-                                    <td><a th:each="role : ${user.getRoles()}" th:text="${role.role} + ' '"></a></td>
-                                </tr>
-                                </tbody>
+                                <tbody id="userInfo"></tbody>
                             </table>
                         </div>
                     </div>
