@@ -1,28 +1,50 @@
-const url = 'http://localhost:8080/authUser';
+getHeader();
 
-const headerName = document.querySelector('.headerForm');
+function getHeader() {
+    fetch('http://localhost:8080/authUser')
+        .then(response => response.json())
+        .then(user => {
+            document.getElementById("headerName").innerHTML = user.name;
+            let rolesList = document.createElement('ul');
+            for (let i = 0; i < user.roles.length; i++) {
+                let role = document.createElement('li');
+                role.textContent = user.roles[i].role.substring(5) + " ";
+                rolesList.appendChild(role);
+            }
+            document.getElementById("headerRoles").innerHTML = 'with roles: ' + rolesList.textContent;
+        });
+}
 
-fetch(url)
-    .then(res => res.json())
-    .then(data => {
-       console.log(data.name);
-    });
+getUserInfo();
 
+function getUserInfo(user) {
+    fetch('http://localhost:8080/authUser')
+        .then(response => response.json())
+        .then(user => {
+            let tBody = document.getElementById("userInfo");
+            tBody.innerHTML = "";
+            let row = tBody.insertRow(0);
+            let cell0 = row.insertCell(0);
+            cell0.innerHTML = user.id;
+            let cell1 = row.insertCell(1);
+            cell1.innerHTML = user.username;
+            let cell11 = row.insertCell(2);
+            cell11.innerHTML = user.name;
+            let cell2 = row.insertCell(3);
+            cell2.innerHTML = user.lastname;
+            let cell3 = row.insertCell(4);
+            cell3.innerHTML = user.email;
+            let cell5 = row.insertCell();
+            cell5.innerHTML = getListRoles(user).textContent.replaceAll("ROLE_", "");
+        });
+}
 
-
-
-
-
-
-
-
-//
-// getHeader();
-//
-// function getHeader() {
-//     fetch('http://localhost:8080/authUser')
-//         .then(response => response.json())
-//         .then(user => {
-//             document.getElementById("headerName").innerHTML = user.name;
-//         });
-// }
+function getListRoles(user) {
+    let rolesList = document.createElement('ul');
+    for (let i = 0; i < user.roles.length; i++) {
+        let role = document.createElement('li');
+        role.textContent = user.roles[i].role + " ";
+        rolesList.appendChild(role);
+    }
+    return rolesList;
+}
