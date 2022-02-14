@@ -31,7 +31,7 @@
 <body>
     <!-- Верхняя навигационная панель -->
     <nav class="navbar bg-dark navbar-dark fixed-top">
-        <form class="form-inline">
+        <form class="headerForm form-inline">
             <span id="headerName" class="navbar-text text-white"></span>
             <span class="navbar-text text-white">&nbsp with roles: &nbsp</span>
             <span class="navbar-text text-white"><a th:each="role: ${user.getRoles()}" th:text="${role.role}+' '"></a></span>
