@@ -1,7 +1,6 @@
-const url = 'http://localhost:8080/authUser';
 let infoTable = document.getElementById("infoTable");
 
-fetch(url)
+fetch('http://localhost:8080/authUser')
     .then(response => response.json())
     .then(user => {
         infoTable.innerHTML = "";
