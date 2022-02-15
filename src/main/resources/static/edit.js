@@ -93,8 +93,8 @@ function getModalEdit(id) {
 
 function editUser() {
     let form = window.formEditUser.eRoles;
+    let id = window.formEditUser.eId.value;
     let newRoles = [];
-
     let rolesList = document.createElement('ul');
 
     for (let i = 0; i < form.length; i++) {
@@ -103,8 +103,6 @@ function editUser() {
             newRoles.push(option.value)
         }
     }
-
-    let id = window.formEditUser.eId.value;
 
     fetch('http://localhost:8080/admin/update?currentRoles=' + newRoles, {
         method: 'PATCH',

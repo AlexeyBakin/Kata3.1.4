@@ -1,19 +1,14 @@
 package com.example.web.controller;
 
-import com.example.web.model.Role;
 import com.example.web.model.User;
 import com.example.web.service.RoleService;
 import com.example.web.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @AllArgsConstructor

@@ -17,14 +17,8 @@ function getModalDelete(id) {
 
             let modal = document.getElementById('modalWindow');
             modal.innerHTML =
-                '<div id="modalDelete" ' +
-                '     class="modal fade" ' +
-                '     tabindex="-1" ' +
-                '     role="dialog"' +
-                '     aria-labelledby="TitleModalLabel" ' +
-                '     aria-hidden="true" ' +
-                '     data-backdrop="static" ' +
-                '     data-keyboard="false">' +
+                '<div id="modalDelete" class="modal fade" tabindex="-1" role="dialog"' +
+                '     aria-labelledby="TitleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">' +
                 '    <div class="modal-dialog modal-dialog-scrollable">' +
                 '        <div class="modal-content">' +
                 '            <div class="modal-header">' +
