@@ -36,7 +36,7 @@ public class AdminRestController {
     public ResponseEntity<User> update(@RequestBody @Valid User user,
                                        @RequestParam(required = false, name = "currentRoles") String[] currentRoles) {
         for (String role : currentRoles) {
-            user.setOneRole(new Role(role));
+            user.setOneRole(roleService.getRoleByRole(role));
         }
         userService.updateUser(user);
         return ResponseEntity.ok().body(user);

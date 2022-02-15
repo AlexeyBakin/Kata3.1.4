@@ -38,6 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
                 .and().formLogin()
                 .successHandler(handler);
+
+        http.csrf().disable();
     }
 
     @Bean
