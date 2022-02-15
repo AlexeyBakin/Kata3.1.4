@@ -41,4 +41,10 @@ public class AdminRestController {
         userService.updateUser(user);
         return ResponseEntity.ok().body(user);
     }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable(value = "id") Long id) {
+        userService.deleteById(id);
+    }
 }

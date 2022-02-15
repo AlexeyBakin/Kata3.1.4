@@ -31,43 +31,4 @@ public class AdminController {
         model.addAttribute("roleList", roleService.getAllRoles());
         return "admin";
     }
-
-    @PostMapping(value="/add")
-    public String addUser(@ModelAttribute User newUser,
-                          @RequestParam(value = "checked", required = false) Long[] checked){
-        if (checked == null) {
-            newUser.setOneRole(roleService.getRoleByRole("USER"));
-        } else {
-            for (Long aLong : checked) {
-                if (aLong != null) {
-                    newUser.setOneRole(roleService.getRoleByID(aLong));
-                }
-            }
-        }
-        userService.addUser(newUser);
-        return "redirect:/admin";
-    }
-
-    @PatchMapping(value="/edit/{id}")
-    public String updateUser(@ModelAttribute User user,
-                             @RequestParam(value = "checked", required = false) Long[] checked) {
-        if (checked == null) {
-            user.setOneRole(roleService.getRoleByRole("USER"));
-            userService.updateUser(user);
-        } else {
-            for (Long aLong : checked) {
-                if (aLong != null) {
-                    user.setOneRole(roleService.getRoleByID(aLong));
-                    userService.updateUser(user);
-                }
-            }
-        }
-        return "redirect:/admin";
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public String getUserId(@PathVariable(value="id") Long id) {
-        userService.deleteById(id);
-        return "redirect:/admin";
-    }
 }
