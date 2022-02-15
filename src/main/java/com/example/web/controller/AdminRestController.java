@@ -32,6 +32,16 @@ public class AdminRestController {
         return ResponseEntity.ok().body(userService.getUserById(id));
     }
 
+    @PostMapping("/create")
+    public ResponseEntity<User> create(@RequestBody @Valid User user,
+                                       @RequestParam(required = false, name = "newRoles") String[] newRoles) {
+        for (String role : newRoles) {
+            user.setOneRole(roleService.getRoleByRole(role));
+        }
+        userService.addUser(user);
+        return ResponseEntity.ok().body(user);
+    }
+
     @PatchMapping("/update")
     public ResponseEntity<User> update(@RequestBody @Valid User user,
                                        @RequestParam(required = false, name = "currentRoles") String[] currentRoles) {
